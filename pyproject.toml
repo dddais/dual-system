@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dualsystem"
+version = "0.1.0"
+description = "Standalone VLM-to-executor Dual-System agent loop"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Dual-System Contributors"}]
+keywords = [
+    "robotics",
+    "vision-language-models",
+    "embodied-ai",
+    "agent-loop",
+]
+dependencies = [
+    "pillow",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+local-qwen = [
+    "torch",
+    "transformers",
+    "qwen-vl-utils",
+]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+dualsystem = "dualsystem.cli:main"
+dualsystem-real-robot = "dualsystem.real_robot_run:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dualsystem*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+dualsystem = ["py.typed"]
+
+[tool.pytest.ini_options]
+addopts = "-v"
+python_files = "test_*.py"
+testpaths = ["tests"]

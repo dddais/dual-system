@@ -1,0 +1,29 @@
+enable_memory: true
+frequency: 1
+planning_mode: subtask_selection
+# planning_mode: direct
+session_dir: ~/.dualsystem/sessions
+
+vlm:
+  provider: local_qwen
+  model_path: /mnt/public1/ljx_test/ViFailback/checkpoints/Qwen3-VL-8B-Instruct
+  # model_path: /home/dais/workspace/Robo-Dopamine/pretrained_models/Robo-Dopamine-GRM-2.0-8B-Preview
+  model_family: qwen3
+  dtype: bf16
+  device: cuda:0
+  min_pixels: 200704       # 256 * 28 * 28
+  max_pixels: 1003520      # 1280 * 28 * 28
+  sampling_params:
+    temperature: 1.0
+    top_p: 0.95
+    max_new_tokens: 512
+
+executor:
+  provider: http
+  endpoint: http://localhost:8000/execute
+  timeout: 30
+
+logging:
+  enabled: true
+  run_dir: ./runs
+  copy_images: true
