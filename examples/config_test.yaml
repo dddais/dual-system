@@ -7,7 +7,7 @@ vlm:
   provider: openai_compatible
   model: gemini-3-flash-preview
   base_url: https://api.vectorengine.ai/v1
-  api_key: sk-0H3K9dIdsMmrMVpcEUnvd3uh8byBwIDuzyFFmTeW8roCUKyS
+  api_key: ${OPENAI_API_KEY}
   sampling_params:
     temperature: 0.2
     max_new_tokens: 256

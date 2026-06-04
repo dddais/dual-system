@@ -25,17 +25,27 @@ real_robot:
   stop_status: done
   dry_run: false
 
+# vlm:
+#   provider: local_qwen
+#   model_path: /mnt/public1/ljx_test/ViFailback/checkpoints/Qwen3-VL-8B-Instruct
+#   model_family: qwen3
+#   dtype: bf16
+#   device: cuda:0
+#   min_pixels: 200704
+#   max_pixels: 1003520
+#   sampling_params:
+#     temperature: 1.0
+#     top_p: 0.95
+#     max_new_tokens: 512
+
 vlm:
-  provider: local_qwen
-  model_path: /mnt/public1/ljx_test/ViFailback/checkpoints/Qwen3-VL-8B-Instruct
-  model_family: qwen3
-  dtype: bf16
-  device: cuda:0
-  min_pixels: 200704
-  max_pixels: 1003520
+  provider: openai_compatible
+  model: gemini-3.5-flash
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  api_key: ${GOOGLE_API_KEY}
+  timeout: 60
   sampling_params:
-    temperature: 1.0
-    top_p: 0.95
+    temperature: 0.2
     max_new_tokens: 512
 
 # vlm:
